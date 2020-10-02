@@ -8,28 +8,16 @@ import java.util.Random;
 
 public class ArrayListVsLinkedList {
 
-	private static final int DATA = 99999999;
+	private static final int DATA = 9999999;
 
 	public static void main(String[] args) {
 		List<String> data1 = new ArrayList<>();
 		List<String> data2 = new LinkedList<>();
-		String first = null;
-		String last = null;
-		String middle = null;
 
 		for (int i = 0; i < DATA; i++) {
 			String e = generateString(8);
 			data1.add(e);
 			data2.add(e);
-			if (i == 0) {
-				first = e;
-			}
-			if (i == DATA / 2) {
-				middle = e;
-			}
-			if (i == DATA - 1) {
-				last = e;
-			}
 		}
 
 		add(data1, 0, "first");
@@ -67,8 +55,8 @@ public class ArrayListVsLinkedList {
 		remove(data1, data1.size() - 1);
 		remove(data2, data2.size() - 1);
 
-		removeAllStartingWithA(data1);
-		removeAllStartingWithA(data2);
+		removeAllStartingWithA(data1.subList(0, DATA / 100));
+		removeAllStartingWithA(data2.subList(0, DATA / 100));
 
 		/*
 		Algorithm           ArrayList   LinkedList
@@ -112,7 +100,7 @@ insert after an item  O(N)         O(1)
 			}
 		}
 		long time = System.currentTimeMillis() - start;
-		System.out.println(data.getClass().getSimpleName() + ": remove startin with a in " + time + "ms");
+		System.out.println(data.getClass().getSimpleName() + ": remove starting with a in " + time + "ms");
 	}
 
 	public static void add(List<String> data, int index, String value) {
