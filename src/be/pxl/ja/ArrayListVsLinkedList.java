@@ -8,13 +8,13 @@ import java.util.Random;
 
 public class ArrayListVsLinkedList {
 
-	private static final int DATA = 9999999;
+	private static final int ITEMS = 9999999;
 
 	public static void main(String[] args) {
 		List<String> data1 = new ArrayList<>();
 		List<String> data2 = new LinkedList<>();
 
-		for (int i = 0; i < DATA; i++) {
+		for (int i = 0; i < ITEMS; i++) {
 			String e = generateString(8);
 			data1.add(e);
 			data2.add(e);
@@ -22,10 +22,10 @@ public class ArrayListVsLinkedList {
 
 		add(data1, 0, "first");
 		add(data2, 0, "first");
-		add(data1, DATA/2, "middle");
-		add(data2, DATA/2, "middle");
-		add(data1, DATA, "last");
-		add(data2, DATA, "last");
+		add(data1, ITEMS/2, "middle");
+		add(data2, ITEMS/2, "middle");
+		add(data1, ITEMS, "last");
+		add(data2, ITEMS, "last");
 
 		indexOf(data1, "first");
 		indexOf(data2, "first");
@@ -55,19 +55,10 @@ public class ArrayListVsLinkedList {
 		remove(data1, data1.size() - 1);
 		remove(data2, data2.size() - 1);
 
-		removeAllStartingWithA(data1.subList(0, DATA / 100));
-		removeAllStartingWithA(data2.subList(0, DATA / 100));
-
-		/*
-		Algorithm           ArrayList   LinkedList
-seek front            O(1)         O(1)
-seek back             O(1)         O(1)
-seek to index         O(1)         O(N)
-insert at front       O(N)         O(1)
-insert at back        O(1)         O(1)
-insert after an item  O(N)         O(1)
-		 */
-
+		data1 = new ArrayList<>(data1.subList(0, ITEMS / 10));
+		data2 = new LinkedList<>(data2.subList(0, ITEMS / 10));
+		removeAllStartingWithA(data1);
+		removeAllStartingWithA(data2);
 	}
 
 	public static void remove(List<String> data, String value) {
@@ -88,7 +79,7 @@ insert after an item  O(N)         O(1)
 		long start = System.currentTimeMillis();
 		String remove = data.remove(index);
 		long time = System.currentTimeMillis() - start;
-		System.out.println(data.getClass().getSimpleName() + ": " + remove + " removed from  " + index + " in " + time + "ms");
+		System.out.println(data.getClass().getSimpleName() + ": " + remove + " removed from index " + index + " in " + time + "ms");
 	}
 
 	public static void removeAllStartingWithA(List<String> data) {
@@ -114,7 +105,7 @@ insert after an item  O(N)         O(1)
 		long start = System.currentTimeMillis();
 		int i = data.indexOf(value);
 		long time = System.currentTimeMillis() - start;
-		System.out.println(data.getClass().getSimpleName() + ": " + value + " found at " + i + " in " + time + "ms");
+		System.out.println(data.getClass().getSimpleName() + ": " + value + " found at index " + i + " in " + time + "ms");
 	}
 
 
