@@ -23,7 +23,6 @@ public class Account {
 	}
 
 	public void addProfile(Profile profile) {
-
 		profiles.add(profile);
 	}
 

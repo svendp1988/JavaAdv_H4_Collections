@@ -30,28 +30,4 @@ public abstract class Content {
 	public String toString() {
 		return title;
 	}
-
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) {
-			return true;
-		}
-		if (o == null || getClass() != o.getClass()) {
-			return false;
-		}
-
-		Content content = (Content) o;
-
-		if (getTitle() != null ? !getTitle().equals(content.getTitle()) : content.getTitle() != null) {
-			return false;
-		}
-		return getMaturityRating() == content.getMaturityRating();
-	}
-
-	@Override
-	public int hashCode() {
-		int result = getTitle() != null ? getTitle().hashCode() : 0;
-		result = 31 * result + (getMaturityRating() != null ? getMaturityRating().hashCode() : 0);
-		return result;
-	}
 }
