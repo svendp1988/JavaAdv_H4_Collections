@@ -14,8 +14,6 @@ public class Profile {
 	private static final int MAX_CURRENTLY_WATCHING_SIZE = 3;
 	private String name;
 	private LocalDate dateOfBirth;
-	private Queue<Content> recentlyWatched = new LinkedList<>();
-	private Queue<Content> currentlyWatching = new LinkedList<>();
 
 	public Profile(String name) {
 		this.name = name;
@@ -45,21 +43,6 @@ public class Profile {
 			return 0;
 		}
 		return (int) ChronoUnit.YEARS.between(dateOfBirth, LocalDateTime.now());
-	}
-
-	public void startWatching(Content content) {
-		currentlyWatching.offer(content);
-		while (currentlyWatching.size() > MAX_CURRENTLY_WATCHING_SIZE) {
-			currentlyWatching.remove();
-		}
-	}
-
-	public void finishWatching(Content content) {
-		currentlyWatching.remove(content);
-		recentlyWatched.add(content);
-		while (recentlyWatched.size() == MAX_RECENTLY_WATCHED_SIZE) {
-			recentlyWatched.remove();
-		}
 	}
 
 	public boolean allowedToWatch(Content content) {
