@@ -15,5 +15,7 @@ public class PhonebookDemo {
 		System.out.println(phoneBook.get("Ben"));
 		System.out.println(phoneBook.containsKey("Els"));
 		System.out.println(phoneBook.values());
+
+		phoneBook.entrySet().forEach(System.out::println);
 	}
 }
